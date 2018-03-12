@@ -81,17 +81,9 @@ void Employee::showdata(void){
 }
 
 //tsalin tootsoh gishvvn punkts
-float Employee::calSalary(void){
-	//boss gesen temdegten hvsnegt vvsgene
-    char boss[10];
-    //vvsgesen  boss hvnegtend zahiral gesenutgiig huulna
-    strcpy(boss,"zahiral");
-    //ajilsan tsag ilvv bgaa esehiig shalgana
-    if(addJob(jobtime) == 1)
-    	//ajilsan tsag ilvv  bwal jobtime iig 1 eer nemegdvvlne
-        jobtime++;
+float Employee::calSalary(void){  
     //garaas unshsan position(alban tushaal) boss hvsnegtiinhtiin utgatai adil esehiig shalgana
-    if(strcmp(position,boss) == 0)
+    if(strcmp(position,"zahiral") == 0)
     	//adil bwal zahirliin tsalin bodoh g.punktsiig duudna
         bossSalary();
     //vgvi bol hewiin ajilchnii tsalin bodoj salary-d utgiig onoono
@@ -107,9 +99,14 @@ float Employee::bossSalary(void){
 }
 
 //nemelt tsag tootsoh g.punkts
-int Employee::addJob(float jobtime){
-	// odort ajilsan tsag ni 9 oos ih 24 oos baga bwal 1 iig butsaana esreg tohioldold 0 iig butsaana
-    return (jobtime > 9 && jobtime < 24);
+int Employee::addJob(float j){
+	// odort ajilsan tsag ni 0 oos ih 24 oos baga bwal 1 iig butsaana esreg tohioldold 0 iig butsaana
+    if(jobtime > 0 && jobtime < 24){
+    	jobtime += j;
+    	return 1; 
+    }
+    else 
+    	return 0;
 }
 //ajilchnii tsalind handah g.punkts
 float Employee::getpay(){
