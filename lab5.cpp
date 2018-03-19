@@ -167,7 +167,7 @@ int main()
     Employee emp[10],empk;
     //ashiglah parametervvdee zarlana
     int n, k, i, j;
-    int number, jobTime;
+    int number, jobTime, count = 0;
     char name[10], position[10];
 
     //n ajiltnii toog garaas unshina
@@ -176,9 +176,30 @@ int main()
     //0 -ees n hvrtel ajiltanii medeelel garaas unshina
     for(k = 0; k < n; k++){
     	
+    	 //ahiltanii dugaariig shalgaj utga onooh dawtalt
+    	 do{
+		 //shineer oruulah dugaariig garaas unshih
          cout << "\t" <<"Ajiltnii dugaar : ";
          cin >> number;
-         emp[k].setNum(number);
+         //oruulsan dugaariig omnoh obiektiin ajilchdiin dugaartai dawhtsaj bgaa esehiig shalgah dawtalt
+         for(int i = 0; i < k; i++){
+         	if(emp[i].getNum() == number)
+         	    //herew ajilchdiin dugaar dawhtsal tooluuriig nemegdvvlen dawtaltiig duusgana.
+         	    count++;
+         		break;
+		 }
+		 //herew tooluur oorchlogdoogvi bol k dahi ajilchnii dugaariig gishvvn ogogdold onoono6
+		 if(count == 0){
+		 	emp[k].setNum(number);
+		 }
+         //esregtohioldold aldaag hewlen count iin utgiig 0 bolgoj dahin deerh vildlvvdiig dawtana.	
+         else{
+         	cout << "Ajiltnii dugaar dawhtsaj bna\n Dahin oruulna uu!!\n";
+         	count = 0;
+		 }
+         	
+         //herew k ajilt gishvvn ugugdul anhnii utgaasaa oor garaas utga awhad dawtalt duusna	
+    	}while(emp[k].getNum() == 0);
     	
       	 cout << "\t" <<"Ajiltnii ner : ";
          cin >> name;
@@ -201,7 +222,7 @@ int main()
    //bubble sort
     for(i = 0; i < n; i++){
         for(j = i+1; j < n; j++)
-            //omnoh ajiltnii tsalin daraagiin ajiltnii tsalingaas baga bwal swap hiine
+            //omnoh ajiltnii ner ni daraagiin ajiltnii nerees omno bwal swap hiine
             if(strcmp(emp[i].getName(),emp[j].getName()) == 1){
                 //swap hiih vildel
                 empk = emp[i];
@@ -216,7 +237,7 @@ int main()
     //0 ees n hvrtel eremblegdsen ajilnii medeelliig hewlene
     for(k = 0; k < n; k++){
     	//emp[k] dugaar ajiltnii medeelliig showdata g.punktseer hewlene
-        cout << k+1 << ":" << emp[k].getName() << "\n";    
+        emp[k].showdata();    
     } 
     
 
